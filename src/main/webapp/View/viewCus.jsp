@@ -22,7 +22,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.jsp">MoonHostel
-                <img src="../assets/img/logo.png" class="rounded-circle"  alt="logo"width="40" height="36">
+                <img src="../assets/img/logo.png" class="rounded-circle"  alt="logo" width="40" height="36">
             </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -87,10 +87,10 @@
 
                <div class="card mb-4">
                         <div class="card-header">
-                            <div class="card-header">
+                            <div class="card-header text-info">
                                 <h2><i class="fa fa-eye"></i> Thông Tin Khách Thuê</h2>                              
                             </div>
-                            <div class="card-header ml-3">
+                            <div class="card-header" style="padding-left: 5%;">
                                 <h4><i class="fa fa-home"></i> Phòng 1</h4>                              
                             </div>
                             <div class="mt-3 text-center" style="float:right; display: flex">                               

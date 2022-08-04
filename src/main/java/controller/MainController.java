@@ -25,17 +25,30 @@ public class MainController extends HttpServlet {
 
     private static final String ADMIN_PAGE = "AdminPageController";
     private static final String USER_PAGE = "UserPageController";
+    private static final String CUSTOMER_PAGE = "CustomerPageController";
     private static final String ROOM_PAGE = "RoomPageController";
+    private static final String SERVICE_PAGE = "ServicePageController";
+    private static final String BILL_PAGE = "BillPageController";
+    private static final String CART_PAGE = "CartController";
 
     private static final String ADD_ROOM = "AddRoomController";
     private static final String ADD_HOSTEL = "AddHostelController";
+    private static final String ADD_SERVICE = "AddServiceController";
+    private static final String ADD_CUSTOMER = "AddCustomerController";
+
     private static final String UPDATE_ROOM = "UpdateRoomController";
     private static final String UPDATE_HOSTEL = "UpdateHostelController";
+    private static final String UPDATE_SERVICE = "UpdateServiceController";
+    private static final String UPDATE_BILL = "UpdateBillController";
+
     private static final String DELETE_ROOM = "DeleteRoomController";
     private static final String DELETE_HOSTEL = "DeleteHostelController";
+    private static final String DELETE_SERVICE = "DeleteServiceController";
 
+    private static final String CHANGE_PASS = "ChangePassController";
+    private static final String CHECKOUT = "CheckoutController";
+    private static final String COMPLETEBILL = "CompleteBillController";
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,33 +62,74 @@ public class MainController extends HttpServlet {
                 case "Logout":
                     url = LOGOUT_CONTROLLER;
                     break;
+//--PAGE------------------------------------------------------------------------------
                 case "AdminPage":
                     url = ADMIN_PAGE;
                     break;
                 case "UserPage":
                     url = USER_PAGE;
                     break;
+                case "CustomerPage":
+                    url = CUSTOMER_PAGE;
+                    break;
                 case "RoomPage":
                     url = ROOM_PAGE;
                     break;
+                case "ServicePage":
+                    url = SERVICE_PAGE;
+                    break;
+                case "BillPage":
+                    url = BILL_PAGE;
+                    break;
+                case "CartPage":
+                    url = CART_PAGE;
+                    break;
+//--ADD------------------------------------------------------------------------------
                 case "AddRoom":
                     url = ADD_ROOM;
                     break;
                 case "AddHostel":
                     url = ADD_HOSTEL;
                     break;
+                case "AddService":
+                    url = ADD_SERVICE;
+                    break;
+                case "AddCustomer":
+                    url = ADD_CUSTOMER;
+                    break;
+//--UPDATE------------------------------------------------------------------------------
                 case "UpdateRoom":
                     url = UPDATE_ROOM;
                     break;
                 case "UpdateHostel":
                     url = UPDATE_HOSTEL;
                     break;
+                case "UpdateService":
+                    url = UPDATE_SERVICE;
+                    break;
+                case "UpdateBill":
+                    url = UPDATE_BILL;
+                    break;
+                case "ChangePass":
+                    url = CHANGE_PASS;
+                    break;
+                case "Checkout":
+                    url = CHECKOUT;
+                    break;
+                case "CompleteBill":
+                    url = COMPLETEBILL;
+                    break;
+//--DELETE------------------------------------------------------------------------------
                 case "DeleteRoom":
                     url = DELETE_ROOM;
                     break;
                 case "DeleteHostel":
                     url = DELETE_HOSTEL;
                     break;
+                case "DeleteService":
+                    url = DELETE_SERVICE;
+                    break;
+//--DEFAULT------------------------------------------------------------------------------
                 default:
                     break;
             }

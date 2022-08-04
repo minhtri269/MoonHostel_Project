@@ -4,9 +4,13 @@ package controller;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
+import dao.AddressDAO;
 import dao.RoomDAO;
+import dto.Address.City;
+import dto.Address.District;
+import dto.Address.Ward;
 import dto.HostelDTO;
+import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,38 +18,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author avillX
  */
-@WebServlet(name = "AddHostelController",urlPatterns = {"/AddHostelController"})
+@WebServlet(name = "AddHostelController", urlPatterns = {"/AddHostelController"})
 public class AddHostelController extends HttpServlet {
 
-    private static final String ERROR = "UserPageController";
-    private static final String SUCCESS = "UserPageController"; 
+    private static final String ERROR = "View/addNewHostel.jsp";
+    private static final String SUCCESS = "MainController?action=RoomPage";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            String hostelID = request.getParameter("hostelID");
-            String hostelname = request.getParameter("hostelname");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
-            String userID = request.getParameter("userID");
 
-            RoomDAO dao = new RoomDAO();
-            boolean check = dao.AddHostel(new HostelDTO(hostelID, hostelname, address, phone, userID));
-            if (check) {
-                url = SUCCESS;
-            }
-        } catch (Exception e) {
-            log("Error at AddHostelController: " + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +48,14 @@ public class AddHostelController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = ERROR;
+        try {
+
+        } catch (Exception e) {
+            log("Error at AddHostelController(doGet): " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     /**
@@ -74,7 +69,30 @@ public class AddHostelController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = SUCCESS;
+        try {
+            HttpSession ss = request.getSession();
+            UserDTO us = (UserDTO) ss.getAttribute("LOGIN_USER");
+            AddressDAO ad = new AddressDAO();
+
+            String hostelname = request.getParameter("hostelname");
+            String wardID = request.getParameter("wardID");
+
+            RoomDAO dao = new RoomDAO();
+            int hostelID = dao.CountHostel();
+            Ward wwardID = ad.GetAWard(wardID);
+            District DistrictID = ad.GetADistrict(wwardID.getDistrictID());
+            City CityID = ad.GetACity(DistrictID.getCityID());
+            String address = request.getParameter("address") + ", " + wwardID.getWardname() + ", " + DistrictID.getDistrictname() + ", " + CityID.getCityname();
+            boolean check = dao.AddHostel(new HostelDTO(String.valueOf(hostelID), hostelname, address, us.getPhone(), us.getUserID(), wardID));
+            if (check) {
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            log("Error at AddHostelController(doPost): " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     /**

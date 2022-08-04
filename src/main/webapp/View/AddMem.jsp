@@ -57,7 +57,7 @@
         <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu" >
                         <div class="nav">
 
                             <a class="nav-link" href="index.jsp">
@@ -89,11 +89,11 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main class="container-fluid">
+                <main class="container-fluid" style="font-size: 19px">
                     <div class="container-fluid px-4">
                         <div class="card mt-4">
                             <div class="card-header">
-                                <h1 class="text-info">Tạo Tài Khoản</h1>
+                                <h1 class="text-info"><i class="fa fa-user"></i> Tạo Tài Khoản</h1>
 
                             </div>
                             <div class="card-body">

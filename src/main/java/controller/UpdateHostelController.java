@@ -87,9 +87,10 @@ public class UpdateHostelController extends HttpServlet {
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
             String userID = request.getParameter("userID");
+            String wardID = request.getParameter("wardID");
 
             RoomDAO dao = new RoomDAO();
-            boolean check = dao.UpdateHostel(new HostelDTO(hostelID, hostelname, address, phone, userID));
+            boolean check = dao.UpdateHostel(new HostelDTO(hostelID, hostelname, address, phone, userID, wardID));
             if (check) {
                 url = SUCCESS;
             }
